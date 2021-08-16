@@ -18,4 +18,7 @@
     <string name="table_number">Mesa</string>
     <string name="menu">Cardápio</string>
     <string name="note">Observação:</string>
+    <string name="err_msg_enter_order_number">Comanda Inválida</string>
+    <string name="err_msg_enter_table_number">Número da mesa incorreto.</string>
+    <string name="historic">Histórico</string>
 </resources>

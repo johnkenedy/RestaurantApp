@@ -69,9 +69,19 @@
         android:layout_margin="5dp"
         android:padding="13dp"
         android:text="@string/menu"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_access_historic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_order_number" />
+
+    <Button
+        android:id="@+id/btn_access_historic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:padding="13dp"
+        android:text="@string/historic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_access_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_orders_list"
@@ -81,7 +91,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_access_menu"
+        app:layout_constraintTop_toBottomOf="@+id/btn_access_historic"
         tools:listitem="@layout/order_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

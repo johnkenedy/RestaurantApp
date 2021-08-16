@@ -3,15 +3,16 @@ package com.example.restaurantapp.ui.activities
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.budiyev.android.codescanner.*
+import com.example.restaurantapp.R
 import com.example.restaurantapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var codeScanner: CodeScanner
@@ -55,9 +56,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fabSendOrder.setOnClickListener {
-
+            validateDetails()
         }
 
+    }
+
+    private fun validateDetails(): Boolean {
+
+        if (binding.etOrderNumber.text.length != 4) {
+            showErrorSnackBar(resources.getString(R.string.err_msg_enter_order_number), true)
+        } else if (binding.etTableNumber.text.length != 3) {
+            showErrorSnackBar(resources.getString(R.string.err_msg_enter_table_number), true)
+        }
+            return true
     }
 
     private fun startScanningTable() {
