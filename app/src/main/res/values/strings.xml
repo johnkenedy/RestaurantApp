@@ -14,4 +14,8 @@
     <string name="log_in">Log In</string>
     <string name="err_msg_enter_android_number">Digite o numero do seu Android.</string>
     <string name="err_msg_enter_android_password">Digite a senha para continuar.</string>
+    <string name="order_number">Comanda</string>
+    <string name="table_number">Mesa</string>
+    <string name="menu">Cardápio</string>
+    <string name="note">Observação:</string>
 </resources>

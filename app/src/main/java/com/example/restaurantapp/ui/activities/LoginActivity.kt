@@ -1,12 +1,10 @@
-package com.example.restaurantapp.ui.activities.login
+package com.example.restaurantapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import com.example.restaurantapp.R
 import com.example.restaurantapp.databinding.ActivityLoginBinding
-import com.example.restaurantapp.ui.activities.BaseActivity
-import com.example.restaurantapp.ui.activities.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity() {

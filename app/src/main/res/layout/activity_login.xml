@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/theme_color"
-    tools:context=".ui.activities.login.LoginActivity">
+    tools:context=".ui.activities.LoginActivity">
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/iv_login_logo"
