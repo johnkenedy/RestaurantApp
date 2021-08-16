@@ -1,6 +1,7 @@
 package com.example.restaurantapp.ui.activities
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.TextUtils
@@ -57,6 +58,10 @@ class MainActivity : BaseActivity() {
 
         binding.fabSendOrder.setOnClickListener {
             validateDetails()
+        }
+
+        binding.btnAccessMenu.setOnClickListener {
+            startActivity(Intent(applicationContext, MenuActivity::class.java))
         }
 
     }
