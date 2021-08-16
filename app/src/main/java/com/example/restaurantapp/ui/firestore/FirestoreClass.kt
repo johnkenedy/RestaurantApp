@@ -1,4 +1,4 @@
-package com.example.restaurantapp.ui.activities.ui.firestore
+package com.example.restaurantapp.ui.firestore
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

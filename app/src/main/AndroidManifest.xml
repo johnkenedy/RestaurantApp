@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RestaurantApp">
         <activity
-            android:name=".ui.activities.ui.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.activities.ui.login.LoginActivity"
+            android:name=".ui.activities.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.ui.QRCodeActivity"
+            android:name=".ui.activities.QRCodeActivity"
             android:exported="true" />
 
         <meta-data

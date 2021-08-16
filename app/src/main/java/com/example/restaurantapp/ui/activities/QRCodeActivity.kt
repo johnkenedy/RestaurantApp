@@ -1,4 +1,4 @@
-package com.example.restaurantapp.ui.activities.ui
+package com.example.restaurantapp.ui.activities
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.budiyev.android.codescanner.*
-import com.example.restaurantapp.R
-import com.example.restaurantapp.databinding.ActivityLoginBinding
 import com.example.restaurantapp.databinding.QrcodeActivityBinding
 
 class QRCodeActivity : AppCompatActivity() {

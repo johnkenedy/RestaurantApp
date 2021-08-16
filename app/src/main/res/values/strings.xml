@@ -12,4 +12,6 @@
     <string name="username">Android</string>
     <string name="password">Password</string>
     <string name="log_in">Log In</string>
+    <string name="err_msg_enter_android_number">Digite o numero do seu Android.</string>
+    <string name="err_msg_enter_android_password">Digite a senha para continuar.</string>
 </resources>
