@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RestaurantApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.ui.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activities.ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activities.ui.QRCodeActivity"
+            android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

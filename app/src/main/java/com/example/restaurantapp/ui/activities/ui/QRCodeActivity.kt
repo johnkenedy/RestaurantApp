@@ -1,4 +1,4 @@
-package com.example.restaurantapp
+package com.example.restaurantapp.ui.activities.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -8,14 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.budiyev.android.codescanner.*
+import com.example.restaurantapp.R
+import com.example.restaurantapp.databinding.ActivityLoginBinding
+import com.example.restaurantapp.databinding.QrcodeActivityBinding
 
-class MainActivity : AppCompatActivity() {
+class QRCodeActivity : AppCompatActivity() {
 
+    private lateinit var binding: QrcodeActivityBinding
     private lateinit var codeScanner: CodeScanner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = QrcodeActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         cameraPermission()
     }
@@ -31,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startScanning() {
-        val scannerView: CodeScannerView = findViewById(R.id.scanner_view)
+        val scannerView: CodeScannerView = binding.scannerView
         codeScanner = CodeScanner(this, scannerView)
         codeScanner.camera = CodeScanner.CAMERA_BACK
         codeScanner.formats = CodeScanner.ALL_FORMATS
