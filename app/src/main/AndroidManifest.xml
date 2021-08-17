@@ -4,6 +4,7 @@
     package="com.example.restaurantapp">
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RestaurantApp"
         tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".ui.activities.ProductsActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.activities.MenuActivity"
             android:exported="true"

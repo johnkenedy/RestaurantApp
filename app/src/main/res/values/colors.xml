@@ -10,4 +10,5 @@
     <color name="theme_color">#0E1D21</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#FFFFFF</color>
     <color name="red">#AC0C00</color>
+    <color name="light_gray">#ECECEC</color>
 </resources>

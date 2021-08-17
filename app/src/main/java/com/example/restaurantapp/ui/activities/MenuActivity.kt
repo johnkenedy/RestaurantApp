@@ -1,9 +1,10 @@
 package com.example.restaurantapp.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.restaurantapp.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurantapp.databinding.ActivityMenuBinding
+import com.example.restaurantapp.ui.adapter.MenuListAdapter
 
 class MenuActivity : AppCompatActivity() {
 
@@ -13,7 +14,13 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        adapter()
     }
 
-
+    private fun adapter() {
+        binding.rvMenuCategories.layoutManager = LinearLayoutManager(this@MenuActivity)
+        val menuListAdapter = MenuListAdapter(this@MenuActivity)
+        binding.rvMenuCategories.adapter = menuListAdapter
+    }
 }
