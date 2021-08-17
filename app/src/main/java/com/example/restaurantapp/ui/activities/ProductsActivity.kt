@@ -16,8 +16,6 @@ import com.example.restaurantapp.utils.Constants
 class ProductsActivity : BaseActivity() {
 
     private lateinit var binding: ActivityProductsBinding
-    private lateinit var mProductDetails: Items
-    private var mProductId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,20 +37,8 @@ class ProductsActivity : BaseActivity() {
 
     }
 
-    fun addToCart() {
-        val cartItem = CartItem(
-            FirestoreClass().getCurrentUserID(),
-            mProductId,
-            mProductDetails.title,
-            mProductDetails.price,
-            Constants.DEFAULT_CART_QUANTITY
-        )
-        showProgressDialog()
-        FirestoreClass().addCartItems(this@ProductsActivity, cartItem)
-    }
-
     fun addToCartSuccess() {
-        hideProgressDialog()
+//        hideProgressDialog()
     }
 
     private fun showProductList() {
