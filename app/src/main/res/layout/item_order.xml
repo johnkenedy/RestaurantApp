@@ -16,7 +16,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/tv_product_name"
+            android:id="@+id/tv_order_product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -30,15 +30,15 @@
             tools:text="coca cola 1L" />
 
         <TextView
-            android:id="@+id/tv_product_amount"
+            android:id="@+id/tv_order_product_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:maxLines="1"
-            android:text="1"
+            android:text="@string/_1"
             android:textColor="@color/theme_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_order_product_name" />
 
         <TextView
             android:id="@+id/tv_order_details"
@@ -49,7 +49,7 @@
             android:text="@string/note"
             android:textColor="@color/theme_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_amount" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_order_product_amount" />
 
         <EditText
             android:id="@+id/et_order_details"
@@ -63,35 +63,35 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_order_details" />
 
         <ImageView
-            android:id="@+id/iv_add_item"
+            android:id="@+id/iv_order_add_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
             android:src="@drawable/ic_add"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_product_amount"
-            app:layout_constraintEnd_toStartOf="@id/iv_remove_item"
-            app:layout_constraintTop_toTopOf="@+id/tv_product_amount"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_order_product_amount"
+            app:layout_constraintEnd_toStartOf="@id/iv_order_remove_item"
+            app:layout_constraintTop_toTopOf="@+id/tv_order_product_amount"
             tools:layout_editor_absoluteX="36dp" />
 
         <ImageView
-            android:id="@+id/iv_remove_item"
+            android:id="@+id/iv_order_remove_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
             android:src="@drawable/ic_remove"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_product_amount"
-            app:layout_constraintEnd_toStartOf="@+id/iv_delete_item"
-            app:layout_constraintTop_toTopOf="@+id/tv_product_amount" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_order_product_amount"
+            app:layout_constraintEnd_toStartOf="@+id/iv_order_delete_item"
+            app:layout_constraintTop_toTopOf="@+id/tv_order_product_amount" />
 
         <ImageView
-            android:id="@+id/iv_delete_item"
+            android:id="@+id/iv_order_delete_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:src="@drawable/ic_delete"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_remove_item"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_order_remove_item"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_remove_item" />
+            app:layout_constraintTop_toTopOf="@+id/iv_order_remove_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

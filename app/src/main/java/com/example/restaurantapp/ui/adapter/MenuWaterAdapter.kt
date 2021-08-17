@@ -17,7 +17,7 @@ class MenuWaterAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(
             LayoutInflater.from(context)
-                .inflate(R.layout.item_order, parent, false)
+                .inflate(R.layout.item_product_list, parent, false)
         )
     }
 
@@ -25,7 +25,7 @@ class MenuWaterAdapter(
         val model = list[position]
 
         if (holder is MyViewHolder) {
-            holder.itemView.findViewById<TextView>(R.id.tv_product_name).text =  model.title
+            holder.itemView.findViewById<TextView>(R.id.tv_category_title).text =  model.title
         }
     }
 

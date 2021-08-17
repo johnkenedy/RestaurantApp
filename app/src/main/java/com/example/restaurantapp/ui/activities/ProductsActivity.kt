@@ -21,12 +21,6 @@ class ProductsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProductsBinding.inflate(layoutInflater)
 
-        val bundle: Bundle? = intent.extras
-        if (bundle != null) {
-            val message = bundle.getString(Constants.CATEGORY)
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
-
         showProductList()
         listeners()
 

@@ -72,6 +72,7 @@ class AppetizerListAdapter(
                     )
 
                     FirestoreClass().addCartItems(context as ProductsActivity, cartItem)
+                    Toast.makeText(context, "PRODUTO ADICIONADO", Toast.LENGTH_SHORT).show()
                     notifyDataSetChanged()
                 }
         }

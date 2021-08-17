@@ -1,6 +1,7 @@
 package com.example.restaurantapp.ui.activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -9,14 +10,26 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.budiyev.android.codescanner.*
 import com.example.restaurantapp.R
 import com.example.restaurantapp.databinding.ActivityMainBinding
+import com.example.restaurantapp.ui.adapter.CartItemsListAdapter
+import com.example.restaurantapp.ui.firestore.FirestoreClass
+import com.example.restaurantapp.ui.models.CartItem
+import com.example.restaurantapp.ui.models.Items
+import com.example.restaurantapp.ui.models.Order
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var codeScanner: CodeScanner
+
+    private var mTotalAmount: Double = 0.0
+    private lateinit var mCartItemsList: ArrayList<CartItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +54,7 @@ class MainActivity : BaseActivity() {
         codeScanner.isFlashEnabled = false
 
         setContentView(binding.root)
+
     }
 
     private fun listeners() {
@@ -57,13 +71,52 @@ class MainActivity : BaseActivity() {
         }
 
         binding.fabSendOrder.setOnClickListener {
-            validateDetails()
+
         }
 
         binding.btnAccessMenu.setOnClickListener {
             startActivity(Intent(applicationContext, MenuActivity::class.java))
         }
 
+    }
+
+    private fun getCartItemsList() {
+        FirestoreClass().getCartList(this@MainActivity)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun placeAnOrder() {
+        validateDetails()
+        showProgressDialog()
+
+        val orderNumber = binding.etOrderNumber.text.toString()
+        val tableNumber = binding.etTableNumber.text.toString()
+
+        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss")
+        val currentDateAndTime: String = simpleDateFormat.format(Date())
+
+        val order = Order(
+            FirestoreClass().getCurrentUserID(),
+            mCartItemsList,
+            orderNumber,
+            tableNumber,
+            "Comanda: $orderNumber, Mesa: $tableNumber Hora: $currentDateAndTime",
+            mTotalAmount.toString(),
+            System.currentTimeMillis().toString()
+        )
+
+        FirestoreClass().placeOrder(this@MainActivity, order)
+    }
+
+    fun successCartItemList(cartList: ArrayList<CartItem>) {
+        hideProgressDialog()
+        mCartItemsList = cartList
+
+        binding.rvOrdersList.layoutManager = LinearLayoutManager(this@MainActivity)
+        binding.rvOrdersList.setHasFixedSize(true)
+
+        val cartListAdapter = CartItemsListAdapter(this@MainActivity, mCartItemsList, false)
+        binding.rvOrdersList.adapter = cartListAdapter
     }
 
     private fun validateDetails(): Boolean {
@@ -75,6 +128,10 @@ class MainActivity : BaseActivity() {
         }
             return true
     }
+
+
+
+
 
     private fun startScanningTable() {
         binding.scannerView.visibility = View.VISIBLE
@@ -126,6 +183,9 @@ class MainActivity : BaseActivity() {
         codeScanner.startPreview()
     }
 
+    fun itemUpdateSuccess() {
+        getCartItemsList()
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
