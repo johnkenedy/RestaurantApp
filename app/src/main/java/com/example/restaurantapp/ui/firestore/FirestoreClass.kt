@@ -2,9 +2,7 @@ package com.example.restaurantapp.ui.firestore
 
 import android.app.Activity
 import android.util.Log
-import com.example.restaurantapp.ui.activities.MainActivity
-import com.example.restaurantapp.ui.activities.MenuActivity
-import com.example.restaurantapp.ui.models.Constants
+import com.example.restaurantapp.utils.Constants
 import com.example.restaurantapp.ui.models.Items
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
