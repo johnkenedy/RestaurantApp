@@ -2,6 +2,9 @@ package com.example.restaurantapp.utils
 
 object Constants {
     const val CATEGORY: String = "category"
+    const val CART_ITEMS: String = "cart_items"
+    const val PRODUCT_ID: String = "product_id"
+    const val DEFAULT_CART_QUANTITY: Int = 1
 
     const val MEAT: String = "CARNES E PORÇÕES"
     const val WATER: String = "ÁGUAS E SUCOS"
@@ -9,6 +12,12 @@ object Constants {
     const val APPETIZER: String = "ENTRADAS"
 
 
+    //WATER AND JUICES
+    const val WATER_WITHOUT_GAS: String = "ÁGUA SEM GÁS"
+    const val WATER_WITH_GAS: String = "ÁGUA COM GÁS"
+    const val ORANGE_JUICE: String = "LARANJADA NATURAL"
+    const val LEMONADE: String = "LIMONADA NATURAL"
+    const val SWISS_LEMONADE: String = "LIMONADA SUÍÇA"
 
     //MEALS
     //APPETIZER

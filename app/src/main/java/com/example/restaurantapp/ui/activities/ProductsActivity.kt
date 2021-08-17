@@ -2,23 +2,26 @@ package com.example.restaurantapp.ui.activities
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurantapp.databinding.ActivityProductsBinding
 import com.example.restaurantapp.ui.adapter.AppetizerListAdapter
 import com.example.restaurantapp.ui.adapter.MeatListAdapter
 import com.example.restaurantapp.ui.adapter.SideDishListAdapter
 import com.example.restaurantapp.ui.adapter.WaterAndJuiceListAdapter
+import com.example.restaurantapp.ui.firestore.FirestoreClass
+import com.example.restaurantapp.ui.models.CartItem
+import com.example.restaurantapp.ui.models.Items
 import com.example.restaurantapp.utils.Constants
 
-class ProductsActivity : AppCompatActivity() {
+class ProductsActivity : BaseActivity() {
 
     private lateinit var binding: ActivityProductsBinding
+    private lateinit var mProductDetails: Items
+    private var mProductId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         val bundle: Bundle? = intent.extras
         if (bundle != null) {
@@ -27,7 +30,29 @@ class ProductsActivity : AppCompatActivity() {
         }
 
         showProductList()
+        listeners()
 
+        setContentView(binding.root)
+    }
+
+    private fun listeners() {
+
+    }
+
+    fun addToCart() {
+        val cartItem = CartItem(
+            FirestoreClass().getCurrentUserID(),
+            mProductId,
+            mProductDetails.title,
+            mProductDetails.price,
+            Constants.DEFAULT_CART_QUANTITY
+        )
+        showProgressDialog()
+        FirestoreClass().addCartItems(this@ProductsActivity, cartItem)
+    }
+
+    fun addToCartSuccess() {
+        hideProgressDialog()
     }
 
     private fun showProductList() {
