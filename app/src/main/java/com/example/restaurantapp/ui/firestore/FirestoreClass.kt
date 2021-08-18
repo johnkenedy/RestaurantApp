@@ -97,7 +97,7 @@ class FirestoreClass {
             .addOnSuccessListener {
                 when (context) {
                     is MainActivity -> {
-                        context.hideProgressDialog()
+
                     }
                 }
             }.addOnFailureListener { e ->

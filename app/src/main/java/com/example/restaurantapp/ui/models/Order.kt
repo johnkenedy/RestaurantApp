@@ -5,11 +5,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Order (
-    val android: String = "",
+    val user_id: String = "",
     val items: ArrayList<CartItem> = ArrayList(),
     val order_number: String = "",
     val table: String = "",
     val title: String = "",
     val total_amount: String = "",
-    var id: String = ""
+    var id: String = "",
+    val android: String = ""
 ) : Parcelable

@@ -102,13 +102,14 @@ class MainActivity : BaseActivity() {
         val textAndroid = FirestoreClass().getCurrentUserEmail()
         val android = textAndroid.subSequence(0,2).toString()
         val order = Order(
-            android,
+            FirestoreClass().getCurrentUserID(),
             mCartItemsList,
             orderNumber,
             tableNumber,
             "Comanda: $orderNumber, Mesa: $tableNumber Hora: $currentDateAndTime",
             binding.tvTotalAmount.text.toString(),
-            System.currentTimeMillis().toString()
+            System.currentTimeMillis().toString(),
+            android
         )
 
         FirestoreClass().placeOrder(this@MainActivity, order)
