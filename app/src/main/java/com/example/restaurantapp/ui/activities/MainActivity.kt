@@ -5,7 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -17,11 +17,9 @@ import com.example.restaurantapp.databinding.ActivityMainBinding
 import com.example.restaurantapp.ui.adapter.CartItemsListAdapter
 import com.example.restaurantapp.ui.firestore.FirestoreClass
 import com.example.restaurantapp.ui.models.CartItem
-import com.example.restaurantapp.ui.models.Items
 import com.example.restaurantapp.ui.models.Order
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity() {
 
@@ -117,20 +115,39 @@ class MainActivity : BaseActivity() {
 
         val cartListAdapter = CartItemsListAdapter(this@MainActivity, mCartItemsList, false)
         binding.rvOrdersList.adapter = cartListAdapter
+
+        var total = 0.0
+        for (item in mCartItemsList) {
+            val price = item.price.toDouble()
+            val quantity = item.cart_quantity.toInt()
+            total += (price * quantity)
+        }
+        val roundedTotal = "%.2f".format(total).toDouble()
+        binding.tvTotalAmount.text = "R$$roundedTotal"
+
+        Log.e("Cart Items", mCartItemsList.toString())
     }
 
     private fun validateDetails(): Boolean {
 
-        if (binding.etOrderNumber.text.length != 4) {
-            showErrorSnackBar(resources.getString(R.string.err_msg_enter_order_number), true)
-        } else if (binding.etTableNumber.text.length != 3) {
-            showErrorSnackBar(resources.getString(R.string.err_msg_enter_table_number), true)
+        when {
+            binding.etOrderNumber.text.length != 4 -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_order_number), true)
+            }
+            binding.etTableNumber.text.length != 3 -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_table_number), true)
+            }
+            mTotalAmount == 0.0 -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_order), true)
+            }
         }
-            return true
+        return true
     }
 
-
-
+    override fun onResume() {
+        super.onResume()
+        itemUpdateSuccess()
+    }
 
 
     private fun startScanningTable() {
@@ -160,7 +177,6 @@ class MainActivity : BaseActivity() {
 
     private fun startScanningOrder() {
         binding.scannerView.visibility = View.VISIBLE
-
 
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {

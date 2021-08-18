@@ -22,11 +22,11 @@ class WaterAndJuiceListAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val list = arrayOf(
-        arrayListOf(Constants.WATER_WITHOUT_GAS, "R$3.00"),
-        arrayListOf(Constants.WATER_WITH_GAS, "R$3.00"),
-        arrayListOf(Constants.ORANGE_JUICE, "R$5.00"),
-        arrayListOf(Constants.LEMONADE, "R$5.00"),
-        arrayListOf(Constants.SWISS_LEMONADE, "R$5.00")
+        arrayListOf(Constants.WATER_WITHOUT_GAS, 3.00),
+        arrayListOf(Constants.WATER_WITH_GAS, 3.00),
+        arrayListOf(Constants.ORANGE_JUICE, 5.00),
+        arrayListOf(Constants.LEMONADE, 5.00),
+        arrayListOf(Constants.SWISS_LEMONADE, 5.00)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -60,14 +60,14 @@ class WaterAndJuiceListAdapter(
                     )
                 }
 
-            holder.itemView.findViewById<TextView>(R.id.tv_category_title).text = list[position][0]
+            holder.itemView.findViewById<TextView>(R.id.tv_category_title).text = list[position][0] as CharSequence?
             holder.itemView.findViewById<ImageView>(R.id.iv_add_product_to_cart)
                 .setOnClickListener {
                     val cartItem = CartItem(
                         FirestoreClass().getCurrentUserID(),
-                        list[position][0],
-                        list[position][0],
-                        list[position][1],
+                        list[position][0] as String,
+                        list[position][0] as String,
+                        list[position][1] as Double,
                         Constants.DEFAULT_CART_QUANTITY
                     )
 

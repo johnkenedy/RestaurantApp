@@ -22,4 +22,6 @@
     <string name="err_msg_enter_table_number">Número da mesa incorreto.</string>
     <string name="historic">Histórico</string>
     <string name="_1">1</string>
+    <string name="err_msg_enter_order">Nenhum pedido registrado.</string>
+    <string name="r_0_00">R$0.00</string>
 </resources>

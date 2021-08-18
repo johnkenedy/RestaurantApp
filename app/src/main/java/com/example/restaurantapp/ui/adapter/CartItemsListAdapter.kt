@@ -42,25 +42,18 @@ class CartItemsListAdapter(
 
             holder.itemView.findViewById<ImageView>(R.id.iv_order_remove_item)
                 .setOnClickListener {
-                    when (context) {
-                        is MainActivity -> {
-                            context.showProgressDialog()
-                        }
-                    }
-                    FirestoreClass().removeItemFromCart(context, model.id)
-                }
-
-            holder.itemView.findViewById<ImageView>(R.id.iv_order_remove_item)
-                .setOnClickListener {
                     if (model.cart_quantity == 1) {
                         FirestoreClass().removeItemFromCart(context, model.id)
+                        FirestoreClass().getCartList(context as MainActivity)
                     } else {
                         val cartQuantity: Int = model.cart_quantity
                         val itemHashMap = HashMap<String, Any>()
 
-                        itemHashMap[Constants.CART_QUANTITY] = (cartQuantity - 1).toString()
+                        itemHashMap[Constants.CART_QUANTITY] = (cartQuantity - 1)
 
                         FirestoreClass().updateMyCart(context, model.id, itemHashMap)
+                        notifyDataSetChanged()
+
                     }
                 }
 
@@ -68,12 +61,17 @@ class CartItemsListAdapter(
                 val cartQuantity: Int = model.cart_quantity
                 val itemHashMap = HashMap<String, Any>()
 
-                itemHashMap[Constants.CART_QUANTITY] = (cartQuantity + 1).toString()
+                itemHashMap[Constants.CART_QUANTITY] = (cartQuantity + 1)
 
                 FirestoreClass().updateMyCart(context, model.id, itemHashMap)
-
-
+                notifyDataSetChanged()
             }
+
+            holder.itemView.findViewById<ImageView>(R.id.iv_order_delete_item)
+                .setOnClickListener {
+                    FirestoreClass().removeItemFromCart(context, model.id)
+                    FirestoreClass().getCartList(context as MainActivity)
+                }
         }
     }
 

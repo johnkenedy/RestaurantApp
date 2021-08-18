@@ -22,11 +22,11 @@ class AppetizerListAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val list = arrayOf(
-        arrayListOf(Constants.OLIVE, "R$20.00"),
-        arrayListOf(Constants.PALM_HEART, "R$20.00"),
-        arrayListOf(Constants.SLICED_SALAM, "R$20.00"),
-        arrayListOf(Constants.MIXED, "R$25.00"),
-        arrayListOf(Constants.FRIED_MEAT_BALLS, "R$30.00")
+        arrayListOf(Constants.OLIVE, 20.00),
+        arrayListOf(Constants.PALM_HEART, 20.00),
+        arrayListOf(Constants.SLICED_SALAM, 20.00),
+        arrayListOf(Constants.MIXED, 25.00),
+        arrayListOf(Constants.FRIED_MEAT_BALLS, 30.00)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -60,14 +60,14 @@ class AppetizerListAdapter(
                     )
                 }
 
-            holder.itemView.findViewById<TextView>(R.id.tv_category_title).text = list[position][0]
+            holder.itemView.findViewById<TextView>(R.id.tv_category_title).text = list[position][0].toString()
             holder.itemView.findViewById<ImageView>(R.id.iv_add_product_to_cart)
                 .setOnClickListener {
                     val cartItem = CartItem(
                         FirestoreClass().getCurrentUserID(),
-                        list[position][0],
-                        list[position][0],
-                        list[position][1],
+                        list[position][0] as String,
+                        list[position][0] as String,
+                        list[position][1] as Double,
                         Constants.DEFAULT_CART_QUANTITY
                     )
 
