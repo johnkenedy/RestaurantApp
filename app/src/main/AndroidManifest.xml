@@ -14,6 +14,12 @@
         android:theme="@style/Theme.RestaurantApp"
         tools:ignore="LockedOrientationActivity">
         <activity
+            android:name=".ui.activities.MyOrdersDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activities.MyOrdersActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.activities.ProductsActivity"
             android:exported="true" />
         <activity

@@ -24,4 +24,5 @@
     <string name="_1">1</string>
     <string name="err_msg_enter_order">Nenhum pedido registrado.</string>
     <string name="r_0_00">R$0.00</string>
+    <string name="voc_ainda_nao_fez_pedidos">Você ainda nao fez pedidos.</string>
 </resources>

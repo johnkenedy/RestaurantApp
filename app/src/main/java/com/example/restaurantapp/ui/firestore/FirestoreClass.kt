@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import com.example.restaurantapp.ui.activities.MainActivity
+import com.example.restaurantapp.ui.activities.MyOrdersActivity
 import com.example.restaurantapp.ui.activities.ProductsActivity
 import com.example.restaurantapp.ui.models.CartItem
 import com.example.restaurantapp.ui.models.Order
@@ -151,4 +152,29 @@ class FirestoreClass {
                 )
             }
     }
+
+    fun getMyOrdersList(activity: MyOrdersActivity) {
+        val textAndroid = FirestoreClass().getCurrentUserEmail()
+        val android = textAndroid.subSequence(0,2).toString()
+        mFireStore.collection(Constants.ORDERS)
+            .whereEqualTo(Constants.ANDROID, android)
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<Order> = ArrayList()
+                for (i in document.documents) {
+                    val orderItem = i.toObject(Order::class.java)
+                    orderItem!!.id = i.id
+
+                    list.add(orderItem)
+                }
+
+                activity.populateOrdersListOnUI(list)
+
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while getting the orders list.", e)
+            }
+    }
+
 }

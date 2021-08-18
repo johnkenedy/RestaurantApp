@@ -3,11 +3,13 @@ package com.example.restaurantapp.utils
 object Constants {
     const val CATEGORY: String = "category"
     const val USER_ID: String = "user_id"
+    const val ANDROID: String = "android"
     const val CART_QUANTITY: String = "cart_quantity"
     const val CART_ITEMS: String = "cart_items"
     const val ORDERS: String = "orders"
     const val PRODUCT_ID: String = "product_id"
     const val DEFAULT_CART_QUANTITY: Int = 1
+    const val EXTRA_MY_ORDER_DETAILS: String = "Order Details"
 
     const val MEAT: String = "CARNES E PORÇÕES"
     const val WATER: String = "ÁGUAS E SUCOS"

@@ -81,6 +81,10 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(applicationContext, MenuActivity::class.java))
         }
 
+        binding.btnAccessHistoric.setOnClickListener {
+            startActivity(Intent(this, MyOrdersActivity::class.java))
+        }
+
     }
 
     private fun getCartItemsList() {
