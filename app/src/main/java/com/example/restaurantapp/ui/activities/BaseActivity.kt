@@ -3,6 +3,7 @@ package com.example.restaurantapp.ui.activities
 import android.app.Dialog
 import android.graphics.Color.red
 import android.os.Handler
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.restaurantapp.R
@@ -12,7 +13,7 @@ open class BaseActivity : AppCompatActivity() {
 
     private lateinit var mProgressDialog: Dialog
 
-    private var doubleBackToExitPressedOnce = false
+    var doubleBackToExitPressedOnce = false
 
     fun showErrorSnackBar(message: String, errorMessage: Boolean) {
         val snackBar =
@@ -39,6 +40,7 @@ open class BaseActivity : AppCompatActivity() {
 
     fun doubleBackToExit() {
         if (doubleBackToExitPressedOnce) {
+            findViewById<View>(R.id.scanner_view).visibility = View.GONE
             super.onBackPressed()
             return
         }

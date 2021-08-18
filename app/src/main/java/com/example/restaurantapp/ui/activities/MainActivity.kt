@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -52,7 +53,6 @@ class MainActivity : BaseActivity() {
         codeScanner.isFlashEnabled = false
 
         setContentView(binding.root)
-
     }
 
     private fun listeners() {
@@ -149,6 +149,18 @@ class MainActivity : BaseActivity() {
         itemUpdateSuccess()
     }
 
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        binding.scannerView.visibility = View.GONE
+        showErrorSnackBar("Clique novamente para sair.", false)
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+    }
 
     private fun startScanningTable() {
         binding.scannerView.visibility = View.VISIBLE

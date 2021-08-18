@@ -41,6 +41,7 @@ class SideDishListAdapter(
         if (holder is MyViewHolder) {
             FirebaseFirestore.getInstance().collection(Constants.CART_ITEMS)
                 .whereEqualTo(Constants.PRODUCT_ID, list[position][0])
+                .whereEqualTo(Constants.USER_ID, FirestoreClass().getCurrentUserID())
                 .get()
                 .addOnSuccessListener { document ->
                     if (document.documents.size > 0) {
