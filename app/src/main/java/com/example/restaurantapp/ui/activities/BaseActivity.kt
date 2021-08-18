@@ -64,6 +64,6 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun hideProgressDialog() {
-//        mProgressDialog.dismiss()
+        mProgressDialog.dismiss()
     }
 }

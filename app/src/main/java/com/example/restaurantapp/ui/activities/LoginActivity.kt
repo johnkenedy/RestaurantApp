@@ -35,8 +35,16 @@ class LoginActivity : BaseActivity() {
 
             showProgressDialog()
 
-            val androidNumber = binding.etLoginEmail.text.toString().trim() { it <= ' ' }
-            val email = "$androidNumber@gmail.com"
+            val androidNumber = binding.etLoginEmail.text.toString().toInt()
+            var android = ""
+
+            android = if (androidNumber <= 9) {
+                "00$androidNumber@gmail.com"
+            } else {
+                "0$androidNumber@gmail.com"
+            }
+
+            val email = android
             val password = binding.etLoginPassword.text.toString().trim() { it <= ' ' }
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)

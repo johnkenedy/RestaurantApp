@@ -26,6 +26,16 @@ class FirestoreClass {
         return currentUserID
     }
 
+    fun getCurrentUserEmail(): String {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        var currentUserEmail = ""
+        if (currentUser != null) {
+            currentUserEmail = currentUser.email.toString()
+        }
+        return currentUserEmail
+    }
+
     fun addCartItems(activity: ProductsActivity, addToCart: CartItem) {
         mFireStore.collection(Constants.CART_ITEMS)
             .document()
@@ -130,7 +140,7 @@ class FirestoreClass {
             .document()
             .set(order, SetOptions.merge())
             .addOnSuccessListener {
-                Toast.makeText(activity, "Pedido enviado!", Toast.LENGTH_SHORT).show()
+                activity.orderPlacedSuccessfully()
             }
             .addOnFailureListener { e ->
                 activity.hideProgressDialog()

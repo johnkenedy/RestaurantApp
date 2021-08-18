@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.budiyev.android.codescanner.*
 import com.example.restaurantapp.R
@@ -69,7 +70,11 @@ class MainActivity : BaseActivity() {
         }
 
         binding.fabSendOrder.setOnClickListener {
-
+            if (validateDetails()) {
+                placeAnOrder()
+            } else {
+                false
+            }
         }
 
         binding.btnAccessMenu.setOnClickListener {
@@ -84,30 +89,33 @@ class MainActivity : BaseActivity() {
 
     @SuppressLint("SimpleDateFormat")
     private fun placeAnOrder() {
-        validateDetails()
         showProgressDialog()
-
         val orderNumber = binding.etOrderNumber.text.toString()
         val tableNumber = binding.etTableNumber.text.toString()
 
-        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss")
+        val simpleDateFormat = SimpleDateFormat("HH:mm:ss")
         val currentDateAndTime: String = simpleDateFormat.format(Date())
-
+        val textAndroid = FirestoreClass().getCurrentUserEmail()
+        val android = textAndroid.subSequence(0,2).toString()
         val order = Order(
-            FirestoreClass().getCurrentUserID(),
+            android,
             mCartItemsList,
             orderNumber,
             tableNumber,
             "Comanda: $orderNumber, Mesa: $tableNumber Hora: $currentDateAndTime",
-            mTotalAmount.toString(),
+            binding.tvTotalAmount.text.toString(),
             System.currentTimeMillis().toString()
         )
 
         FirestoreClass().placeOrder(this@MainActivity, order)
     }
 
-    fun successCartItemList(cartList: ArrayList<CartItem>) {
+    fun orderPlacedSuccessfully() {
+        Toast.makeText(this, "Pedido enviado!", Toast.LENGTH_SHORT).show()
         hideProgressDialog()
+    }
+
+    fun successCartItemList(cartList: ArrayList<CartItem>) {
         mCartItemsList = cartList
 
         binding.rvOrdersList.layoutManager = LinearLayoutManager(this@MainActivity)
@@ -137,11 +145,14 @@ class MainActivity : BaseActivity() {
             binding.etTableNumber.text.length != 3 -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_table_number), true)
             }
-            mTotalAmount == 0.0 -> {
+            binding.rvOrdersList.isEmpty() -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_order), true)
             }
+            else -> {
+                return true
+            }
         }
-        return true
+        return false
     }
 
     override fun onResume() {

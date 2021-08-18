@@ -16,7 +16,6 @@ import com.example.restaurantapp.ui.models.CartItem
 import com.example.restaurantapp.utils.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 
-
 class WaterAndJuiceListAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
