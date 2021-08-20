@@ -12,6 +12,7 @@ import com.example.restaurantapp.ui.activities.MainActivity
 import com.example.restaurantapp.ui.firestore.FirestoreClass
 import com.example.restaurantapp.ui.models.CartItem
 import com.example.restaurantapp.utils.Constants
+import com.google.firebase.firestore.FirebaseFirestore
 
 class CartItemsListAdapter(
     private val context: Context,
@@ -31,6 +32,7 @@ class CartItemsListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
+
         if (holder is MyViewHolder) {
 
             holder.itemView.findViewById<TextView>(R.id.tv_order_product_name).text =
@@ -74,6 +76,7 @@ class CartItemsListAdapter(
                 }
         }
     }
+
 
     override fun getItemCount(): Int = list.size
 

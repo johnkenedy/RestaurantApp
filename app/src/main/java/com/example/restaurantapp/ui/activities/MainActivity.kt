@@ -17,6 +17,7 @@ import com.budiyev.android.codescanner.*
 import com.example.restaurantapp.R
 import com.example.restaurantapp.databinding.ActivityMainBinding
 import com.example.restaurantapp.ui.adapter.CartItemsListAdapter
+import com.example.restaurantapp.ui.adapter.ClearCartItemsListAdapter
 import com.example.restaurantapp.ui.firestore.FirestoreClass
 import com.example.restaurantapp.ui.models.CartItem
 import com.example.restaurantapp.ui.models.Order
@@ -92,6 +93,10 @@ class MainActivity : BaseActivity() {
             finish()
         }
 
+        binding.fabClearAll.setOnClickListener {
+            clearList()
+        }
+
     }
 
     private fun getCartItemsList() {
@@ -107,7 +112,7 @@ class MainActivity : BaseActivity() {
         val simpleDateFormat = SimpleDateFormat("HH:mm:ss")
         val currentDateAndTime: String = simpleDateFormat.format(Date())
         val textAndroid = FirestoreClass().getCurrentUserEmail()
-        val android = textAndroid.subSequence(0,3).toString()
+        val android = textAndroid.subSequence(0, 3).toString()
         val order = Order(
             FirestoreClass().getCurrentUserID(),
             mCartItemsList,
@@ -146,6 +151,17 @@ class MainActivity : BaseActivity() {
         binding.tvTotalAmount.text = "R$$roundedTotal"
 
         Log.e("Cart Items", mCartItemsList.toString())
+    }
+
+    private fun clearList() {
+        if (mCartItemsList.isNotEmpty()) {
+            val clearCartListAdapter = ClearCartItemsListAdapter(this@MainActivity, mCartItemsList, false)
+            binding.rvOrdersList.adapter = clearCartListAdapter
+        } else {
+            val cartListAdapter = CartItemsListAdapter(this@MainActivity, mCartItemsList, false)
+            binding.rvOrdersList.adapter = cartListAdapter
+        }
+
     }
 
     private fun validateDetails(): Boolean {
