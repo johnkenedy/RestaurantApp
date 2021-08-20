@@ -7,6 +7,7 @@ object Constants {
     const val CART_QUANTITY: String = "cart_quantity"
     const val CART_ITEMS: String = "cart_items"
     const val ORDERS: String = "orders"
+    const val ORDER_NUMBER: String = "order_number"
     const val PRODUCT_ID: String = "product_id"
     const val DEFAULT_CART_QUANTITY: Int = 1
     const val EXTRA_MY_ORDER_DETAILS: String = "Order Details"

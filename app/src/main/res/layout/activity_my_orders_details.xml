@@ -7,17 +7,31 @@
     tools:context=".ui.activities.MyOrdersDetailsActivity">
 
     <TextView
-        android:id="@+id/tv_order_number_details_activity"
+        android:id="@+id/tv_order_number_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textStyle="bold"
         android:textSize="18sp"
+        android:layout_marginStart="10dp"
         android:textColor="@color/theme_color"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:padding="5dp"
-        tools:text="COMANDA:0123" />
+        android:text="@string/order_card" />
+
+    <TextView
+        android:id="@+id/tv_order_number_details_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:textColor="@color/theme_color"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/tv_order_number_holder"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0123" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_activity_details_order"

@@ -5,7 +5,6 @@ import android.content.Context
 import android.util.Log
 import com.example.restaurantapp.ui.activities.MainActivity
 import com.example.restaurantapp.ui.activities.MyOrdersActivity
-import com.example.restaurantapp.ui.activities.MyOrdersDetailsActivity
 import com.example.restaurantapp.ui.activities.ProductsActivity
 import com.example.restaurantapp.ui.models.CartItem
 import com.example.restaurantapp.ui.models.Order
@@ -154,35 +153,38 @@ class FirestoreClass {
             }
     }
 
-    fun getMyOrdersList(activity: Activity) {
-        mFireStore.collection(Constants.ORDERS)
-            .get()
-            .addOnSuccessListener { document ->
-                val list: ArrayList<Order> = ArrayList()
-                for (i in document.documents) {
-                    val orderItem = i.toObject(Order::class.java)
-                    orderItem!!.id = i.id
-
-                    list.add(orderItem)
-                }
-
-                when (activity) {
-                    is MyOrdersActivity -> {
-                        activity.populateOrdersListOnUI(list)
-                    }
-                }
-
-
-            }
-            .addOnFailureListener { e ->
-                when (activity) {
-                    is MyOrdersActivity -> {
-                        activity.hideProgressDialog()
-                        Log.e(activity.javaClass.simpleName, "Error while getting the orders list.", e)
-                    }
-                }
-
-            }
-    }
-
+//    fun getMyOrdersList(activity: Activity) {
+//        mFireStore.collection(Constants.ORDERS)
+//            .get()
+//            .addOnSuccessListener { document ->
+//                val list: ArrayList<Order> = ArrayList()
+//                for (i in document.documents) {
+//                    val orderItem = i.toObject(Order::class.java)
+//                    orderItem!!.id = i.id
+//
+//                    list.add(orderItem)
+//                }
+//
+//                when (activity) {
+//                    is MyOrdersActivity -> {
+//                        activity.populateOrdersListOnUI(list)
+//                    }
+//                }
+//
+//
+//            }
+//            .addOnFailureListener { e ->
+//                when (activity) {
+//                    is MyOrdersActivity -> {
+//                        activity.hideProgressDialog()
+//                        Log.e(
+//                            activity.javaClass.simpleName,
+//                            "Error while getting the orders list.",
+//                            e
+//                        )
+//                    }
+//                }
+//
+//            }
+//    }
 }

@@ -28,12 +28,15 @@ class MyOrdersListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
         Log.e("ORDERS", list.toString())
-        holder.itemView.findViewById<TextView>(R.id.tv_historic_data).text =
-            "Comanda: ${model.order_number}, Mesa: ${model.table}, Android: ${model.android}"
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, MyOrdersDetailsActivity::class.java)
-            intent.putExtra(Constants.EXTRA_MY_ORDER_DETAILS, model)
-            context.startActivity(intent)
+
+        if (holder is MyViewHolder) {
+            holder.itemView.findViewById<TextView>(R.id.tv_historic_data).text =
+                "Comanda: ${model.order_number}, Mesa: ${model.table}, Android: ${model.android}"
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, MyOrdersDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_MY_ORDER_DETAILS, model)
+                context.startActivity(intent)
+            }
         }
     }
 

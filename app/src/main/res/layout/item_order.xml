@@ -25,7 +25,6 @@
             android:textAllCaps="true"
             android:textColor="@color/theme_color"
             android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="coca cola 1L" />

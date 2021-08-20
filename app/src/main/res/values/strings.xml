@@ -25,4 +25,7 @@
     <string name="err_msg_enter_order">Nenhum pedido registrado.</string>
     <string name="r_0_00">R$0.00</string>
     <string name="voc_ainda_nao_fez_pedidos">Você ainda nao fez pedidos.</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="search_order">Pesquisar Comanda</string>
+    <string name="order_card">COMANDA:</string>
 </resources>
