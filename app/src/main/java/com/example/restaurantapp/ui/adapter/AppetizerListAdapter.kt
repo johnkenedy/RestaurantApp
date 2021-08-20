@@ -1,11 +1,11 @@
 package com.example.restaurantapp.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -36,8 +36,11 @@ class AppetizerListAdapter(
         )
     }
 
+    @SuppressLint("CutPasteId")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Log.e("MENU", list.toString())
+        val textAndroid = FirestoreClass().getCurrentUserEmail()
+        val android = textAndroid.subSequence(0,3).toString()
         if (holder is MyViewHolder) {
             FirebaseFirestore.getInstance().collection(Constants.CART_ITEMS)
                 .whereEqualTo(Constants.PRODUCT_ID, list[position][0])
@@ -45,10 +48,10 @@ class AppetizerListAdapter(
                 .get()
                 .addOnSuccessListener { document ->
                     if (document.documents.size > 0) {
-                        holder.itemView.findViewById<ImageView>(R.id.iv_add_product_to_cart)
+                        holder.itemView.findViewById<TextView>(R.id.tv_add_product_to_cart)
                             .visibility = View.GONE
                     } else {
-                        holder.itemView.findViewById<ImageView>(R.id.iv_add_product_to_cart)
+                        holder.itemView.findViewById<TextView>(R.id.tv_add_product_to_cart)
                             .visibility = View.VISIBLE
                     }
                 }
@@ -61,15 +64,19 @@ class AppetizerListAdapter(
                     )
                 }
 
-            holder.itemView.findViewById<TextView>(R.id.tv_category_title).text = list[position][0].toString()
-            holder.itemView.findViewById<ImageView>(R.id.iv_add_product_to_cart)
+            holder.itemView.findViewById<TextView>(R.id.tv_category_title).text =
+                list[position][0].toString()
+            holder.itemView.findViewById<TextView>(R.id.tv_add_product_to_cart).text =
+                list[position][1].toString()
+            holder.itemView.findViewById<TextView>(R.id.tv_add_product_to_cart)
                 .setOnClickListener {
                     val cartItem = CartItem(
                         FirestoreClass().getCurrentUserID(),
                         list[position][0] as String,
                         list[position][0] as String,
                         list[position][1] as Double,
-                        Constants.DEFAULT_CART_QUANTITY
+                        Constants.DEFAULT_CART_QUANTITY,
+                        android
                     )
 
                     FirestoreClass().addCartItems(context as ProductsActivity, cartItem)

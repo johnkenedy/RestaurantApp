@@ -10,5 +10,7 @@ data class CartItem(
     val title: String = "",
     val price: Double = 0.0,
     var cart_quantity: Int = 1,
+    var android: String = "",
     var id: String = ""
+
 ) : Parcelable

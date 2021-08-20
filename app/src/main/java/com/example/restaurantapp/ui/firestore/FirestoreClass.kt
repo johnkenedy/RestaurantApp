@@ -1,10 +1,11 @@
 package com.example.restaurantapp.ui.firestore
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.example.restaurantapp.ui.activities.MainActivity
 import com.example.restaurantapp.ui.activities.MyOrdersActivity
+import com.example.restaurantapp.ui.activities.MyOrdersDetailsActivity
 import com.example.restaurantapp.ui.activities.ProductsActivity
 import com.example.restaurantapp.ui.models.CartItem
 import com.example.restaurantapp.ui.models.Order
@@ -56,7 +57,7 @@ class FirestoreClass {
 
     }
 
-    fun getCartList(activity: MainActivity) {
+    fun getCartList(activity: Activity) {
         mFireStore.collection(Constants.CART_ITEMS)
             .whereEqualTo(Constants.USER_ID, getCurrentUserID())
             .get()
@@ -71,14 +72,14 @@ class FirestoreClass {
                 }
 
                 when (activity) {
-                    else -> {
+                    is MainActivity -> {
                         activity.successCartItemList(list)
                     }
                 }
             }
             .addOnFailureListener { e ->
                 when (activity) {
-                    else -> {
+                    is MainActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
@@ -153,11 +154,8 @@ class FirestoreClass {
             }
     }
 
-    fun getMyOrdersList(activity: MyOrdersActivity) {
-        val textAndroid = FirestoreClass().getCurrentUserEmail()
-        val android = textAndroid.subSequence(0,2).toString()
+    fun getMyOrdersList(activity: Activity) {
         mFireStore.collection(Constants.ORDERS)
-            .whereEqualTo(Constants.ANDROID, android)
             .get()
             .addOnSuccessListener { document ->
                 val list: ArrayList<Order> = ArrayList()
@@ -168,12 +166,22 @@ class FirestoreClass {
                     list.add(orderItem)
                 }
 
-                activity.populateOrdersListOnUI(list)
+                when (activity) {
+                    is MyOrdersActivity -> {
+                        activity.populateOrdersListOnUI(list)
+                    }
+                }
+
 
             }
             .addOnFailureListener { e ->
-                activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while getting the orders list.", e)
+                when (activity) {
+                    is MyOrdersActivity -> {
+                        activity.hideProgressDialog()
+                        Log.e(activity.javaClass.simpleName, "Error while getting the orders list.", e)
+                    }
+                }
+
             }
     }
 

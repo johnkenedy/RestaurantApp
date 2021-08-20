@@ -20,6 +20,7 @@ import com.example.restaurantapp.ui.adapter.CartItemsListAdapter
 import com.example.restaurantapp.ui.firestore.FirestoreClass
 import com.example.restaurantapp.ui.models.CartItem
 import com.example.restaurantapp.ui.models.Order
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -85,6 +86,12 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this, MyOrdersActivity::class.java))
         }
 
+        binding.ivLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
     }
 
     private fun getCartItemsList() {
@@ -100,7 +107,7 @@ class MainActivity : BaseActivity() {
         val simpleDateFormat = SimpleDateFormat("HH:mm:ss")
         val currentDateAndTime: String = simpleDateFormat.format(Date())
         val textAndroid = FirestoreClass().getCurrentUserEmail()
-        val android = textAndroid.subSequence(0,2).toString()
+        val android = textAndroid.subSequence(0,3).toString()
         val order = Order(
             FirestoreClass().getCurrentUserID(),
             mCartItemsList,
