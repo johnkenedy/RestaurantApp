@@ -10,14 +10,18 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurantapp.R
+import com.example.restaurantapp.ui.activities.MenuActivity
 import com.example.restaurantapp.ui.activities.ProductsActivity
 import com.example.restaurantapp.utils.Constants
 
 
-class MenuListAdapter(
-    private val context: Context,
-    private val list: ArrayList<String>
+class PreMenuListAdapter(
+    private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val list: ArrayList<String> =
+        arrayListOf(Constants.DRINKS, Constants.MEALS)
+    private val openActivityList: ArrayList<String> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(
@@ -31,7 +35,7 @@ class MenuListAdapter(
         if (holder is MyViewHolder) {
             holder.itemView.findViewById<TextView>(R.id.tv_category_title).text = list[position]
             holder.itemView.setOnClickListener {
-                val intent = Intent(context, ProductsActivity::class.java)
+                val intent = Intent(context, MenuActivity::class.java)
                 intent.putExtra(Constants.CATEGORY, list[position])
                 startActivity(context, intent, null)
             }

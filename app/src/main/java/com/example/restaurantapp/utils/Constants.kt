@@ -12,11 +12,13 @@ object Constants {
     const val DEFAULT_CART_QUANTITY: Int = 1
     const val EXTRA_MY_ORDER_DETAILS: String = "Order Details"
 
+    const val MEALS: String = "ALIMENTOS"
+    const val DRINKS: String = "BEBIDAS"
+
     const val MEAT: String = "CARNES E PORÇÕES"
     const val WATER: String = "ÁGUAS E SUCOS"
     const val SIDE_DISH: String = "ACOMPANHAMENTOS"
     const val APPETIZER: String = "ENTRADAS"
-
 
     //WATER AND JUICES
     const val WATER_WITHOUT_GAS: String = "ÁGUA SEM GÁS"

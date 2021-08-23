@@ -84,7 +84,7 @@ class MainActivity : BaseActivity() {
         }
 
         binding.btnAccessMenu.setOnClickListener {
-            startActivity(Intent(applicationContext, MenuActivity::class.java))
+            startActivity(Intent(applicationContext, PreMenuActivity::class.java))
         }
 
         binding.btnAccessHistoric.setOnClickListener {
