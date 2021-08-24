@@ -103,7 +103,7 @@ class MainActivity : BaseActivity() {
 
     }
 
-    fun View.hideKeyboard() {
+    private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
@@ -198,8 +198,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
+        binding.scannerView.visibility = View.GONE
         if (doubleBackToExitPressedOnce) {
-
             super.onBackPressed()
             return
         }
