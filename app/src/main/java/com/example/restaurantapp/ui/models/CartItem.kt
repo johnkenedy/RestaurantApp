@@ -8,7 +8,7 @@ data class CartItem(
     val user_id: String = "",
     val product_id: String = "",
     val title: String = "",
-    val price: Double = 0.0,
+    val price: Long = 0,
     var cart_quantity: Int = 1,
     var android: String = "",
     var id: String = ""

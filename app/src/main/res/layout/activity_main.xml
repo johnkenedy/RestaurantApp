@@ -45,6 +45,8 @@
         android:background="@drawable/et_background"
         android:hint="@string/order_number"
         android:inputType="number"
+        android:focusable="false"
+        android:clickable="false"
         android:maxLength="4"
         android:padding="10dp"
         android:textColor="@color/theme_color"

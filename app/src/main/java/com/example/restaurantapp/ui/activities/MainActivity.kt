@@ -67,7 +67,7 @@ class MainActivity : BaseActivity() {
         }
 
         binding.etOrderNumber.setOnClickListener {
-            binding.etOrderNumber.hideKeyboard()
+//            binding.etOrderNumber.hideKeyboard()
             startScanningOrder()
         }
 

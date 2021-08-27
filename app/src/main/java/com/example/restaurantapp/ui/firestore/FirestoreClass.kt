@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.example.restaurantapp.ui.activities.MainActivity
-import com.example.restaurantapp.ui.activities.MyOrdersActivity
 import com.example.restaurantapp.ui.activities.ProductsActivity
 import com.example.restaurantapp.ui.models.CartItem
+import com.example.restaurantapp.ui.models.Items
 import com.example.restaurantapp.ui.models.Order
 import com.example.restaurantapp.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -148,6 +148,134 @@ class FirestoreClass {
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while placing an order.",
+                    e
+                )
+            }
+    }
+
+    fun getMeatList(activity: Activity) {
+        mFireStore.collection(Constants.MEAT)
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<Items> = ArrayList()
+
+                for (i in document.documents) {
+                    val productItem = i.toObject(Items::class.java)!!
+                    productItem.product_id = i.id
+                    list.add(productItem)
+                }
+
+                when (activity) {
+                    is ProductsActivity -> {
+                        activity.successMeatItemList(list)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is ProductsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while getting the product list items.",
+                    e
+                )
+            }
+    }
+
+    fun getAppetizerList(activity: Activity) {
+        mFireStore.collection(Constants.APPETIZER)
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<Items> = ArrayList()
+
+                for (i in document.documents) {
+                    val productItem = i.toObject(Items::class.java)!!
+                    productItem.product_id = i.id
+                    list.add(productItem)
+                }
+
+                when (activity) {
+                    is ProductsActivity -> {
+                        activity.successAppetizerItemList(list)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is ProductsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while getting the product list items.",
+                    e
+                )
+            }
+    }
+
+    fun getSideDishList(activity: Activity) {
+        mFireStore.collection(Constants.SIDE_DISH)
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<Items> = ArrayList()
+
+                for (i in document.documents) {
+                    val productItem = i.toObject(Items::class.java)!!
+                    productItem.product_id = i.id
+                    list.add(productItem)
+                }
+
+                when (activity) {
+                    is ProductsActivity -> {
+                        activity.successSideDishItemList(list)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is ProductsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while getting the product list items.",
+                    e
+                )
+            }
+    }
+
+    fun getWaterAndJuiceList(activity: Activity) {
+        mFireStore.collection(Constants.WATER)
+            .get()
+            .addOnSuccessListener { document ->
+                val list: ArrayList<Items> = ArrayList()
+
+                for (i in document.documents) {
+                    val productItem = i.toObject(Items::class.java)!!
+                    productItem.product_id = i.id
+                    list.add(productItem)
+                }
+
+                when (activity) {
+                    is ProductsActivity -> {
+                        activity.successWaterAndJuiceItemList(list)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is ProductsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while getting the product list items.",
                     e
                 )
             }

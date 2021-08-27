@@ -4,6 +4,7 @@ object Constants {
     const val CATEGORY: String = "category"
     const val USER_ID: String = "user_id"
     const val ANDROID: String = "android"
+    const val TITLE: String = "title"
     const val CART_QUANTITY: String = "cart_quantity"
     const val CART_ITEMS: String = "cart_items"
     const val ORDERS: String = "orders"

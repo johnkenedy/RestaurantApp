@@ -35,7 +35,7 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-    fun DrinkMealAdapter(list: ArrayList<String>) {
+    private fun DrinkMealAdapter(list: ArrayList<String>) {
         binding.rvMenuCategories.layoutManager = LinearLayoutManager(this@MenuActivity)
         val menuListAdapter = MenuListAdapter(this@MenuActivity, list)
         binding.rvMenuCategories.adapter = menuListAdapter
